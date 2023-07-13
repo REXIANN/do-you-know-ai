@@ -10,9 +10,15 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-// export async function POST(s: NextRequest) {
-//   const res = await openai.createTranscription("whisper-1");
-//
-//   console.log("DATA: ", res.data);
-//   return NextResponse.json(res.data.text);
-// }
+export async function POST(s: NextRequest) {
+  const res = await openai.createTranscription(
+    fs.createReadStream("http://127.0.0.1:3000/audio-file-1.mp3", {
+      encoding: "base64",
+    }),
+    "whisper-1",
+  );
+  console.log(res.data);
+
+  console.log("DATA: ", res.data);
+  return NextResponse.json(res.data.text);
+}

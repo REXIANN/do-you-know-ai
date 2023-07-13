@@ -15,6 +15,7 @@ const NAV_LIST: Nav[] = [
   { link: "/custom", name: "Custom" },
   { link: "/image", name: "Image" },
   { link: "/image-variation", name: "Image Variation" },
+  { link: "/audio", name: "Audio" },
 ];
 
 function NavBar() {

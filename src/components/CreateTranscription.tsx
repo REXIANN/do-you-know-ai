@@ -1,45 +1,29 @@
 "use client";
-
 import * as React from "react";
 
-function SimpleQuestion() {
+function CreateTranscription() {
   const [loading, setLoading] = React.useState(false);
-  const [input, setInput] = React.useState("");
   const [result, setResult] = React.useState("");
 
-  async function onSubmit(e: React.SyntheticEvent) {
+  const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-
-    if (input.length === 0) {
-      return;
-    }
-
     setLoading(true);
+
     try {
-      const response = await fetch("/api/generate", {
+      const response = await fetch("/api/audio", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
-        body: JSON.stringify({ input }),
       });
 
       console.log({ response });
       const data = await response.json();
-      // console.log({ data });
-
-      if (response.status !== 200) {
-        throw data.error || new Error("Request Failed");
-      }
-
-      setResult(data);
-      setInput("");
+      console.log({ data });
     } catch (error) {
       console.error(error);
-    } finally {
-      setLoading(false);
     }
-  }
+  };
 
   return (
     <section>
@@ -47,14 +31,6 @@ function SimpleQuestion() {
         onSubmit={onSubmit}
         className="flex flex-col justify-center items-center"
       >
-        <input
-          className="input w-full input-bordered mb-4"
-          type="text"
-          name="input"
-          placeholder="질문을 입력해주세요"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
         <input
           className="btn btn-primary mb-2 w-24"
           type="submit"
@@ -72,4 +48,4 @@ function SimpleQuestion() {
   );
 }
 
-export default SimpleQuestion;
+export default CreateTranscription;

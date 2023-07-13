@@ -14,6 +14,7 @@ const NAV_LIST: Nav[] = [
   { link: "/simple", name: "Simple" },
   { link: "/custom", name: "Custom" },
   { link: "/image", name: "Image" },
+  { link: "/image-variation", name: "Image Variation" },
 ];
 
 function NavBar() {

@@ -13,6 +13,7 @@ const NAV_LIST: Nav[] = [
   { link: "/", name: "Home " },
   { link: "/simple", name: "Simple" },
   { link: "/custom", name: "Custom" },
+  { link: "/image", name: "Image" },
 ];
 
 function NavBar() {

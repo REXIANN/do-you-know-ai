@@ -6,5 +6,5 @@ export default function Simple() {
       <h3>간단한 질문</h3>
       <SimpleQuestion />
     </main>
-  )
+  );
 }

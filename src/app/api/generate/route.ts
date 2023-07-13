@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
   organization: "org-Hlcz4MCpXJmdEqS1xOyIneZd",
 });
 
@@ -17,8 +17,9 @@ export async function POST(s: NextRequest) {
     model: "text-davinci-003",
     prompt: generatePrompt(body.input),
     temperature: 0.6,
+    logprobs: 5,
   });
 
-  // console.log(res.data)
+  console.log("DATA: ", res.data.choices[0].logprobs);
   return NextResponse.json(res.data.choices[0].text);
 }

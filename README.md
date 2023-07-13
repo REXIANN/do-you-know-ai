@@ -14,3 +14,8 @@ chatGPT 는 질문에 대답을 주는 1회성 사용 이라면 autoGPT 는 스�
 AGI 를 구현했다고 평가받는다.
 
 ### 사용법
+
+## 참고
+* 누구든 시작하라 프롬프트 엔지니어(https://www.yes24.com/Product/Goods/118304109)
+* GPT 세대가 온다(https://www.yes24.com/Product/Goods/118219265)
+* what is logprobs?(https://ai.plainenglish.io/mastering-gpt-3-the-mathematics-of-logprobs-for-ruby-devs-1eb55fc1326)

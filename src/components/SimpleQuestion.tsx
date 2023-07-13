@@ -3,6 +3,7 @@
 import * as React from "react";
 
 function SimpleQuestion() {
+  const [loading, setLoading] = React.useState(false);
   const [input, setInput] = React.useState("");
   const [result, setResult] = React.useState("");
 
@@ -13,6 +14,7 @@ function SimpleQuestion() {
       return;
     }
 
+    setLoading(true);
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -24,7 +26,7 @@ function SimpleQuestion() {
 
       console.log({ response });
       const data = await response.json();
-      console.log({ data });
+      // console.log({ data });
 
       if (response.status !== 200) {
         throw data.error || new Error("Request Failed");
@@ -34,28 +36,41 @@ function SimpleQuestion() {
       setInput("");
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
     <section>
+      <div></div>
       <div>
-        <span>질문을 입력해주세요</span>
-      </div>
-      <div>
-        <form onSubmit={onSubmit}>
+        <form
+          onSubmit={onSubmit}
+          className="flex flex-col justify-center items-center"
+        >
           <input
+            className="input w-full input-bordered mb-4"
             type="text"
             name="input"
             placeholder="질문을 입력해주세요"
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
-          <input type="submit" value="제출하기" />
+          <div></div>
+          <input
+            className="btn btn-primary mb-2 w-24"
+            type="submit"
+            value="제출하기"
+          />
         </form>
       </div>
       <div>
-        답변:&nbsp;<span>{result}</span>
+        <div>답변</div>
+        {loading && (
+          <span className="loading loading-spinner loading-md"></span>
+        )}
+        <div>{result}</div>
       </div>
     </section>
   );

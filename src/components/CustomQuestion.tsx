@@ -27,7 +27,10 @@ function CustomQuestion() {
         headers,
         body: JSON.stringify({
           model,
-          messages: [{ role: "user", content: input }],
+          messages: [
+            { role: "system", content: "You are a helpful assistant." },
+            { role: "user", content: input },
+          ],
         }),
       });
 

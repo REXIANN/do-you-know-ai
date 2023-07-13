@@ -17,7 +17,9 @@ export async function POST(s: NextRequest) {
     model: "text-davinci-003",
     prompt: generatePrompt(body.input),
     temperature: 0.6,
-    logprobs: 5,
+    // logprobs: 5,
+    // max_tokens: 10
+    // presence_penalty: 2 // -2.0 ~ 2.0
   });
 
   console.log("DATA: ", res.data.choices[0].logprobs);
